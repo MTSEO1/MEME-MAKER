@@ -8,7 +8,67 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- 캔버스 -->
     <canvas></canvas>
-    <script src="app.js"></script>
+    <!-- 선 굵기 -->
+    <input id="line-width" type="range" max="10" min="1" value="5" step="0.5" />
+    <!-- 선 색상 -->
+    <input type="color" id="line-color" />
+    <div>
+      <div
+        class="color-option"
+        data-color="#55efc4"
+        style="background-color: #55efc4"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#81ecec"
+        style="background-color: #81ecec"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#74b9ff"
+        style="background-color: #74b9ff"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#a29bfe"
+        style="background-color: #a29bfe"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#dfe6e9"
+        style="background-color: #dfe6e9"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#ffeaa7"
+        style="background-color: #ffeaa7"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#fab1a0"
+        style="background-color: #fab1a0"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#ff7675"
+        style="background-color: #ff7675"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#fd79a8"
+        style="background-color: #fd79a8"
+      ></div>
+      <div
+        class="color-option"
+        data-color="#636e72"
+        style="background-color: #636e72"
+      ></div>
+    </div>
+    <button id="mode-btn">Fill</button>
+    <button id="reset-btn">Reset</button>
+    <button id="eraser-btn">Eraser</button>
+    <script src="paintingboard.js"></script>
   </body>
 </html>

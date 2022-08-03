@@ -4,18 +4,46 @@ const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 800;
 
-ctx.fillRect(200, 200, 15, 100); // 왼팔
-ctx.fillRect(400, 200, 15, 100); // 오른팔
-ctx.fillRect(260, 200, 100, 250); // 몸통
+// 마우스 움직임에 따라 랜덤 색 선 그리기
+// ctx.lineWidth = 4;
 
-ctx.arc(305, 110, 70, 0, 2 * Math.PI); // 머리
-ctx.fill();
+// const colors = [
+//   '#001219',
+//   '#005f73',
+//   '#0a9396',
+//   '#94d2bd',
+//   '#e9d8a6',
+//   '#ee9b00',
+//   '#ca6702',
+//   '#bb3e03',
+//   '#ae2012',
+//   '#9b2226',
+// ];
 
-ctx.beginPath();
-ctx.fillStyle = 'white';
-ctx.arc(330, 80, 10, 0, 2 * Math.PI); // 오른쪽 눈
-ctx.arc(280, 80, 10, 0, 2 * Math.PI); // 왼쪽 눈
-ctx.fill();
+// function onMouse(event) {
+//   ctx.beginPath();
+//   const color = colors[Math.floor(Math.random() * colors.length)]; // 색상 랜덤
+//   ctx.strokeStyle = color;
+//   ctx.moveTo(400, 400);
+//   ctx.lineTo(event.offsetX, event.offsetY); // canvas 위 마우스 좌표
+//   ctx.stroke();
+// }
+
+// canvas.addEventListener('mousemove', onMouse);
+
+// 사람 그리기
+// ctx.fillRect(200, 200, 15, 100); // 왼팔
+// ctx.fillRect(400, 200, 15, 100); // 오른팔
+// ctx.fillRect(260, 200, 100, 250); // 몸통
+
+// ctx.arc(305, 110, 70, 0, 2 * Math.PI); // 머리
+// ctx.fill();
+
+// ctx.beginPath();
+// ctx.fillStyle = 'white';
+// ctx.arc(330, 80, 10, 0, 2 * Math.PI); // 오른쪽 눈
+// ctx.arc(280, 80, 10, 0, 2 * Math.PI); // 왼쪽 눈
+// ctx.fill();
 
 // 집 만들기
 // ctx.fillRect(200, 200, 50, 200); // 왼쪽 벽
