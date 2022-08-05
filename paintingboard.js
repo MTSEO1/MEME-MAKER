@@ -5,6 +5,8 @@ const eraserBtn = document.getElementById('eraser-btn');
 const lineWidth = document.getElementById('line-width');
 const lineColor = document.getElementById('line-color');
 const colorOption = Array.from(document.getElementsByClassName('color-option')); // 배열로 변경
+const loadImg = document.getElementById('loadImg');
+
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 800;
@@ -89,3 +91,15 @@ colorOption.forEach((color) => color.addEventListener('click', onColorOption));
 eraserBtn.addEventListener('click', onEraserBtn);
 modeBtn.addEventListener('click', onModeBtn);
 resetBtn.addEventListener('click', onResetBtn);
+
+function onLoadImg(event) {
+  const file = event.target.files[0];
+  const url = URL.createObjectURL(file);
+  const image = new Image();
+  image.src = url;
+  image.onload = function () {
+    ctx.drawImage(image, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  };
+}
+
+loadImg.addEventListener('change', onLoadImg);
