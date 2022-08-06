@@ -5,7 +5,9 @@ const eraserBtn = document.getElementById('eraser-btn');
 const lineWidth = document.getElementById('line-width');
 const lineColor = document.getElementById('line-color');
 const colorOption = Array.from(document.getElementsByClassName('color-option')); // 배열로 변경
-const loadImg = document.getElementById('loadImg');
+const loadImg = document.getElementById('load-img');
+const textInput = document.getElementById('text-input');
+const downloadBtn = document.getElementById('download-btn');
 
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = 800;
@@ -13,6 +15,7 @@ const CANVAS_HEIGHT = 800;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = 'round';
 let isPainting = false;
 let isFilling = false;
 
@@ -78,20 +81,6 @@ function onEraserBtn() {
   modeBtn.innerText = 'Fill';
 }
 
-lineWidth.addEventListener('change', changeRangeValue);
-lineColor.addEventListener('change', changeColor);
-canvas.addEventListener('click', onCanvasClick);
-canvas.addEventListener('mousemove', onMove);
-canvas.addEventListener('mousedown', onMouseDown);
-canvas.addEventListener('mouseup', onMouseleave);
-canvas.addEventListener('mouseleave', onMouseleave);
-
-colorOption.forEach((color) => color.addEventListener('click', onColorOption));
-
-eraserBtn.addEventListener('click', onEraserBtn);
-modeBtn.addEventListener('click', onModeBtn);
-resetBtn.addEventListener('click', onResetBtn);
-
 function onLoadImg(event) {
   const file = event.target.files[0];
   const url = URL.createObjectURL(file);
@@ -102,4 +91,38 @@ function onLoadImg(event) {
   };
 }
 
+function onDoubleClick(event) {
+  const text = textInput.value;
+  if (text !== '') {
+    ctx.save(); // 선언된 속성 저장
+    ctx.lineWidth = 1;
+    ctx.font = '68px serif';
+    ctx.fillText(text, event.offsetX, event.offsetY);
+    ctx.restore(); // save() 된 거 불러 오기
+  }
+}
+
+function onSaveImg(event) {
+  const url = canvas.toDataURL();
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'myDrawing.png';
+  a.click();
+}
+
+lineWidth.addEventListener('change', changeRangeValue);
+lineColor.addEventListener('change', changeColor);
+canvas.addEventListener('click', onCanvasClick);
+canvas.addEventListener('mousemove', onMove);
+canvas.addEventListener('mousedown', onMouseDown);
+canvas.addEventListener('mouseup', onMouseleave);
+canvas.addEventListener('mouseleave', onMouseleave);
+canvas.addEventListener('dblclick', onDoubleClick);
+
+colorOption.forEach((color) => color.addEventListener('click', onColorOption));
+
+eraserBtn.addEventListener('click', onEraserBtn);
+modeBtn.addEventListener('click', onModeBtn);
+resetBtn.addEventListener('click', onResetBtn);
 loadImg.addEventListener('change', onLoadImg);
+downloadBtn.addEventListener('click', onSaveImg);
